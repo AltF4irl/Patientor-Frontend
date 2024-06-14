@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import patients from '../../services/patients';
 import { Patient } from '../../types';
 import { useEffect, useState } from 'react';
+import DiagnosisEntry from './DiagnosisEntry';
+
 
 const IndividualPatientPage = () => {
   const [patient, setPatient] = useState<Patient>();
@@ -13,7 +15,9 @@ const IndividualPatientPage = () => {
       patients.getOne(id).then((res) => setPatient(res));
     }
   }, [id]);
+
   
+
   if (patient) {
     return (
       <div>
@@ -23,14 +27,18 @@ const IndividualPatientPage = () => {
         </h2>
         <p>ssn: {patient.ssn}</p>
         <p>Occupation: {patient.occupation}</p>
-        
+
         <h3>Entries</h3>
-        {patient.entries.map(entry => {
+        {patient.entries.map((entry) => {
           return (
             <div key={entry.id}>
-              <p>{entry.date} {entry.description}</p>
+              <p>
+                {entry.date} {entry.description}
+              </p>
               <ul>
-                {entry.diagnosisCodes?.map(diagnosisCode => <li key={diagnosisCode}>{diagnosisCode}</li>)}
+                {entry.diagnosisCodes?.map((diagnosisCode) => (
+                  <li key={diagnosisCode}><DiagnosisEntry code={diagnosisCode} /></li>
+                ))}
               </ul>
             </div>
           );
