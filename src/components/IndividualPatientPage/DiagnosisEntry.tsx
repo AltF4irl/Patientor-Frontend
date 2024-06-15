@@ -13,9 +13,11 @@ const DiagnosisEntry = ({code}: DiagnosisProps) => {
       diagnosisService.getOne(code).then(diag => setDiagnosis(diag)); 
     }, [code]);
 
-    return (
-      <>{diagnosis?.code} {diagnosis?.name}</>
-    );
+    if (diagnosis) {
+      return (
+        <>{diagnosis?.code} {diagnosis?.name}</>
+      );
+    }
   };
 
 export default DiagnosisEntry;

@@ -18,8 +18,9 @@ const IndividualPatientPage = () => {
     }
   }, [id]);
 
-  const addEntry = (id: string, entry: NewEntry) => {
-    patients.createEntry(id, entry).then(res => setPatient(res));
+  const addEntry = async (id: string, entry: NewEntry) => {
+      const p = await patients.createEntry(id, entry);
+      setPatient(p);
   };
 
   if (patient) {
@@ -32,7 +33,10 @@ const IndividualPatientPage = () => {
         <p>ssn: {patient.ssn}</p>
         <p>Occupation: {patient.occupation}</p>
 
-        <EntryForm addEntry={addEntry} patientId={id as string} />
+        <EntryForm
+          addEntry={addEntry}
+          patientId={id as string}
+        />
 
         <h3>Entries</h3>
         {patient.entries.map((entry) => {
