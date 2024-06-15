@@ -13,8 +13,6 @@ const DiagnosisEntry = ({code}: DiagnosisProps) => {
       diagnosisService.getOne(code).then(diag => setDiagnosis(diag)); 
     }, [code]);
 
-    console.log(diagnosis, "diag");
-
     return (
       <>{diagnosis?.code} {diagnosis?.name}</>
     );

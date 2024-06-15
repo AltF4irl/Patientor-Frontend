@@ -5,7 +5,7 @@ import patients from '../../services/patients';
 import { Patient } from '../../types';
 import { useEffect, useState } from 'react';
 import DiagnosisEntry from './DiagnosisEntry';
-
+import EntryInfo from './EntryInfo';
 
 const IndividualPatientPage = () => {
   const [patient, setPatient] = useState<Patient>();
@@ -15,8 +15,6 @@ const IndividualPatientPage = () => {
       patients.getOne(id).then((res) => setPatient(res));
     }
   }, [id]);
-
-  
 
   if (patient) {
     return (
@@ -31,16 +29,29 @@ const IndividualPatientPage = () => {
         <h3>Entries</h3>
         {patient.entries.map((entry) => {
           return (
-            <div key={entry.id}>
-              <p>
-                {entry.date} {entry.description}
-              </p>
-              <ul>
-                {entry.diagnosisCodes?.map((diagnosisCode) => (
-                  <li key={diagnosisCode}><DiagnosisEntry code={diagnosisCode} /></li>
-                ))}
-              </ul>
+            <div
+              key={entry.id}
+              style={{
+                border: 'solid 1px black',
+                borderRadius: '5px',
+                marginBottom: '5px',
+                paddingLeft: '5px',
+              }}
+            >
+              <EntryInfo entry={entry} />
             </div>
+          );
+        })}
+
+        {patient.entries.map((entry) => {
+          return (
+            <ul key={entry.id}>
+              {entry.diagnosisCodes?.map((diagnosisCode) => (
+                <li key={diagnosisCode}>
+                  <DiagnosisEntry code={diagnosisCode} />
+                </li>
+              ))}
+            </ul>
           );
         })}
       </div>
