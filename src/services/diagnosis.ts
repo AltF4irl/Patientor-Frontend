@@ -7,6 +7,12 @@ const getOne = async (code: string) => {
     return res.data;
 };
 
+const getAll = async () => {
+    const res = await axios.get<Diagnosis[]>((`${apiBaseUrl}/diagnoses`));
+    return res.data;
+};
+
 export default {
-    getOne
+    getOne,
+    getAll
 };
