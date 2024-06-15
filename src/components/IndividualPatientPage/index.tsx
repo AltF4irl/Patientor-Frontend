@@ -2,10 +2,12 @@ import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import { useParams } from 'react-router-dom';
 import patients from '../../services/patients';
-import { Patient } from '../../types';
+import { NewEntry, Patient } from '../../types';
 import { useEffect, useState } from 'react';
 import DiagnosisEntry from './DiagnosisEntry';
 import EntryInfo from './EntryInfo';
+import EntryForm from './EntryForm';
+import './entryForm.css';
 
 const IndividualPatientPage = () => {
   const [patient, setPatient] = useState<Patient>();
@@ -16,6 +18,10 @@ const IndividualPatientPage = () => {
     }
   }, [id]);
 
+  const addEntry = (id: string, entry: NewEntry) => {
+    patients.createEntry(id, entry).then(res => setPatient(res));
+  };
+
   if (patient) {
     return (
       <div>
@@ -25,6 +31,8 @@ const IndividualPatientPage = () => {
         </h2>
         <p>ssn: {patient.ssn}</p>
         <p>Occupation: {patient.occupation}</p>
+
+        <EntryForm addEntry={addEntry} patientId={id as string} />
 
         <h3>Entries</h3>
         {patient.entries.map((entry) => {

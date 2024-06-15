@@ -1,0 +1,48 @@
+.entryForm p {
+    color: gray;
+    margin-top: 2px;
+}
+
+.entryForm input {
+    border: solid 1px grey;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 0px;
+    width: 100%;
+}
+
+.entryForm input:focus {
+    outline: none;
+}
+
+.entryContainer {
+    width: 100%;
+    border: dotted 2px black;
+    border-radius: 3px;
+    padding: 10px
+}
+
+.formButtonGroup {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.formButtonGroup button[type='button'] {
+    height: 35px;
+    width: 80px;
+    background-color: crimson;
+    color: white;
+    border-radius: 3px;
+    border: none; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.formButtonGroup button[type='submit'] {
+    width: 50px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
